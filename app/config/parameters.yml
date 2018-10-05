@@ -1,9 +1,9 @@
 parameters:
-    database_host: 127.0.0.1
+    database_host: www.db4free.net
     database_port: null
-    database_name: cahier
-    database_user: dev-md
-    database_password: Dev674.
+    database_name: thierry1804
+    database_user: thierry1804
+    database_password: 184BrianNeptunia
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: thierry1804@gmail.com
