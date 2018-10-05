@@ -1,0 +1,32 @@
+.bg-anthracite {
+    background-color: #2B3136;
+    color: #fff;
+    border-right: 6px solid #212529;
+    border-left: 2px solid #fff;
+}
+.bg-anthracite .nav .nav-item {
+    position: relative;
+}
+a {
+    color: #9CAFC2;
+}
+.bg-anthracite .nav .nav-item .active:before {
+    background-color: transparent;
+    border: 10px solid #fff;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+    color: transparent;
+    content: ".";
+    display: block;
+    height: 0;
+    left: -2px;
+    margin-top: -10px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+}
+.bg-anthracite .nav .active {
+    background-color: #212529;
+    color: #fff !important;
+}

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <h1 class="pl-1">Liste des projets</h1>
+    <table class="table table-dark table-sm">
+        <thead>
+            <tr>
+                <th class="text-center align-middle" rowspan="2">#</th>
+                <th class="align-middle" rowspan="2">Libellé</th>
+                <th class="text-center align-middle" rowspan="2">Cas de test</th>
+                <th class="text-center" colspan="{{ criteres|length }}">Statistique</th>
+                <th class="text-center align-middle" rowspan="2">Recette</th>
+            </tr>
+            <tr>
+                {% for critere in criteres %}
+                <th class="text-center" style="color: {{ critere.couleur }};">{{ critere.niveau|capitalize }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for projet in projets %}
+            <tr>
+                <td class="text-center">{{ projet.id }}</td>
+                <td>
+                    <i class="fas fa-code"></i>
+                    {{ projet.libelle }}
+                </td>
+                <td class="text-center">
+                    {% if projet.casTests|length > 0 %}
+                        {{ projet.casTests|length }}
+                    {% endif %}
+                </td>
+                {% for critere in criteres %}
+                <td class="text-center" style="color: {{ critere.couleur }};">
+                    {% if projet.statistique[critere.id] is defined %}
+                        {{ ((projet.statistique[critere.id] / projet.casTests|length) * 100)|number_format(2, ',', '') }}%
+                    {% endif %}
+                </td>
+                {% endfor %}
+                <td class="text-center">
+                    <a href="{{ path('index-cahier', {'id': projet.id}) }}">
+                        <i class="fas fa-vial"></i>
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td class="text-center" colspan="{{ criteres|length + 4 }}">Aucun projet à afficher pour le moment</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-center">
+                    <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#ajouterProjet" data-remote="{{ path('ajouter-projet') }}" href="{{ path('ajouter-projet') }}" class="btn btn-primary btn-sm btn-outline-primary">+</a>
+                </td>
+                <td class="text-center" colspan="{{ criteres|length + 3 }}"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="modal fade" id="ajouterProjet" tabindex="-1" role="dialog" aria-labelledby="ajouterProjetLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ajouterProjetLabel">Ajouter un nouveau projet</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"><i class="fas fa-sync fa-spin"></i> Chargement en cours ...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" id="enregistrerProjet" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" language="javascript" src="{{ asset("js/projet.js") }}"></script>
+{% endblock %}

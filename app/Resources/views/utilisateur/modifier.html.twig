@@ -1,0 +1,50 @@
+{{ form_start(form, {'action': path('utilisateur_modifier', {'id': user.id}), 'attr': {'class': 'form-horizontal'}}) }}
+<div class="row form-group">
+    {{ form_label(form.nom) }}
+    <div class="col-8">
+        {{ form_widget(form.nom) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.prenom) }}
+    <div class="col-8">
+        {{ form_widget(form.prenom) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.login) }}
+    <div class="col-8">
+        {{ form_widget(form.login, {'value': user.username}) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.email) }}
+    <div class="col-8">
+        {{ form_widget(form.email) }}
+        <div class="btn-group dropdown" id="edit-mdp">
+            <button id="modifier-mdp" class="btn btn-default" type="button">Changer mot de passe</button> 
+            <button type="button" class="btn btn-default dropdown-toggle changeMdp" data-toggle="dropdown">
+                <span class="caret"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="d-none password">
+    <div class="row form-group">
+        {{ form_label(form.password.first) }}
+        <div class="col-8">
+            {{ form_widget(form.password.first) }}
+        </div>
+    </div>
+    <div class="row form-group">
+        {{ form_label(form.password.second) }}
+        <div class="col-8">
+            {{ form_widget(form.password.second) }}
+        </div>
+    </div>
+</div>
+<div class="d-none">        
+    {{ form_rest(form) }}
+    <button type="submit" id="modifier-user-hide"></button>
+</div> 
+{{ form_end(form) }}

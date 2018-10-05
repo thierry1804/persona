@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset("css/recette/style.css") }}" />
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <h1 class="pl-1">
+        <i class="fas fa-tasks"></i>
+        Recettes à faire
+    </h1>
+    <table class="table table-dark table-sm">
+        <thead>
+            <tr>
+                <th class="text-center">N&deg;</th>
+                <th class="text-center">
+                    <i class="fas fa-sort-amount-down"></i>
+                    Date
+                </th>
+                <th>Titre</th>
+                <th>Objectif</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in recettes %}
+                <tr>
+                    <td>
+                        <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#recetter" data-lecture-seule="{{ todo.readOnly }}" data-remote="{{ path('do-recette', {'id': todo.id}) }}" href="{{ path('do-recette', {'id': todo.id}) }}">
+                            {{ todo.numero }}
+                        </a>
+                    </td>
+                    <td>{{ todo.date|date('d/m/Y') }}</td>
+                    <td>{{ todo.titre }}</td>
+                    <td>{{ todo.objectif }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">
+                        <i class="fas fa-exclamation-circle"></i>
+                        Aucune recette initiée dans la base de données
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="modal fade" id="recetter" tabindex="-1" role="dialog" aria-labelledby="recetterLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recetterLabel">Recette fonctionnelle <strong>###</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"><i class="fas fa-sync fa-spin"></i> Chargement en cours ...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary d-none" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" id="enregistrerRecetteBtn" class="btn btn-primary">Terminer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" language="javascript" src="{{ asset("js/projet.js") }}"></script>
+    <script type="text/javascript" language="javascript" src="{{ asset("js/recette.js") }}"></script>
+{% endblock %}

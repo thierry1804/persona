@@ -1,0 +1,42 @@
+{{ form_start(form, {'action': path('utilisateur_ajouter'), 'attr': {'class': 'form-horizontal'}})}}
+<div class="row form-group">
+    {{ form_label(form.nom) }}
+    <div class="col-8">
+        {{ form_widget(form.nom) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.prenom) }}
+    <div class="col-8">
+        {{ form_widget(form.prenom) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.login) }}
+    <div class="col-8">
+        {{ form_widget(form.login) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.email) }}
+    <div class="col-8">
+        {{ form_widget(form.email) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.password.first) }}
+    <div class="col-8">
+        {{ form_widget(form.password.first) }}
+    </div>
+</div>
+<div class="row form-group">
+    {{ form_label(form.password.second) }}
+    <div class="col-8">
+        {{ form_widget(form.password.second) }}
+    </div>
+</div>
+<div class="d-none">        
+    {{ form_rest(form) }}
+    <button type="submit" id="ajouter-user-hide"></button>
+</div>       
+{{ form_end(form) }}

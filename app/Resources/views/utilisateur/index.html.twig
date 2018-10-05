@@ -1,0 +1,99 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset("css/utilisateur/style.css") }}" />
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <div class="container-fluid">
+        <h3>
+            Liste des Uitlisateurs
+        </h3>
+        <a href="{{ path('utilisateur_ajouter') }}" role="button" data-target="#ajouter_user" data-toggle="modal" data-remote="{{ path('utilisateur_ajouter') }}">Ajouter un utilisateur</a>
+        <div class="row">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        {% if user.dateFin is null %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{% if user.nom is not null %}{{ user.nom }}{% else %}{{ user.username }}{% endif %}</td>
+                                <td>{{ user.email }}</td>
+                                <td><a href="{{ path('utilisateur_modifier', {'id': user.id }) }}" data-toggle="modal" data-target="#modifier_user" role="button" data-remote="{{ path('utilisateur_modifier', {'id': user.id }) }}">Modifier</a>&nbsp;|&nbsp;<a href="javascript:void(0);" data-toggle="modal" data-target="#supprimer_user_{{ user.id }}" role="button">Supprimer</a></td>                        
+                            </tr>
+                        <div id="supprimer_user_{{ user.id }}" class="modal fade" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content panel-warning">
+                                    <div class="modal-header panel-heading">
+                                        <h4>Confirmation de suppression</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Voulez-vous vraiement supprimer l'utilisateur <b>{% if user.nom is not null %}{{ user.nom }}{% else %}{{ user.username }}{% endif %}</b> ?</p>
+                                    </div>
+                                    <div class="modal-footer">                                        
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                        <a href="{{ path('utilisateur_supprimer', {'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    </div>
+                                </div>                                        
+                            </div>
+                        </div>
+                    {% endif %}                    
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>        
+    </div>  
+    <div id="ajouter_user" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">                                                
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajout d'un utilisateur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body body-user">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuuler</button>
+                    <button type="button" id="ajouter-user" class="btn btn btn-primary">Ajouter</button>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div id="modifier_user" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modification d'un utilisateur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body body-user">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuuler</button>
+                    <button type="button" id="modifier-user" class="btn btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" language="javascript" src="{{ asset("js/utilisateur.js") }}"></script>
+{% endblock %}    

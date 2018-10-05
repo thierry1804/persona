@@ -1,0 +1,75 @@
+{{ form_start(form, { 'action': path('do-recette', {'id': recette.id}) }) }}
+    <div class="form-row">
+        {{ form_label(form.titre) }}
+        <p class="form-control-plaintext col-sm-10">{{ form.titre.vars.value }}</p>
+    </div>
+    <div class="form-row">
+        {{ form_label(form.objectif) }}
+        <p class="form-control-plaintext col-sm-10">{{ form.objectif.vars.value }}</p>
+    </div>
+    <div class="form-row">
+        {{ form_label(form.prerequis) }}
+        <div class="col-sm-10">
+            {% for prerequis in form.prerequis %}
+            <div class="form-check p-0 pt-2">
+                {{ form_widget(prerequis.ok) }}
+                <label class="form-check-label" for="{{ prerequis.ok.vars.id }}">{{ prerequis.item.vars.value }}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        {{ form_label(form.initialisation) }}
+        <p class="form-control-plaintext col-sm-10">{{ form.initialisation.vars.value }}</p>
+    </div>
+    <div class="form-row">
+        {{ form_label(form.batteries) }}
+        <div class="col-sm-12">
+            <table class="table table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Données d'entrée</th>
+                        <th>Comportements attendus</th>
+                        <th>OK?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for batterie in form.batteries %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ batterie.donneesEntrees.vars.value }}</td>
+                        <td>{{ batterie.comportementAttendu.vars.value }}</td>
+                        <td>{{ form_widget(batterie.ok) }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-row">
+        <label class="col-sm-3 col-form-label">Rapport de recette</label>
+        <p class="form-control-plaintext col-sm-9">Testé par : {{ app.user.nom }}, le {{ "now"|date("d/m/Y") }}</p>
+    </div>
+    <div class="form-row" id="rapport">
+        <div class="col-sm-12">
+            {% for critere in form.critereSuccesEchec.children %}
+                <div class="form-check col-sm-3 float-left text-center card-group">
+                    <div class="card p-2">
+                        {{ form_widget(critere) }}
+                        <label class="form-check-label" for="{{ critere.vars.id }}">
+                            {{ critere.vars.label|raw }}
+                        </label>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form-row">
+        {{ form_label(form.commentaire) }}
+        <div class="col-sm-12">{{ form_widget(form.commentaire) }}</div>
+    </div>
+    <div class="d-none">
+        {{ form_rest(form) }}
+    </div>
+{{ form_end(form) }}

@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <h1 class="pl-1">
+        <i class="fas fa-vial"></i>
+        Recettes pour le projet <strong>{{ projet.libelle }}</strong>
+    </h1>
+    <div class="row">
+        <div class="col-2 pr-0">
+            <ul class="list-group list-group-flush">
+                {% for p in projets %}
+                <li class="list-group-item{% if p.id == projet.id %} active{% endif %}">
+                    <i class="fas fa-code"></i>
+                    {{ p.libelle }}
+                </li>
+                {% else %}
+                <li class="list-group-item">Aucun projet</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col pl-0">
+            <table class="table table-dark table-sm">
+                <thead>
+                    <tr>
+                        <th class="text-center">N&deg;</th>
+                        <th class="text-center">
+                            <i class="fas fa-sort-amount-down"></i>
+                            Date
+                        </th>
+                        <th>Titre</th>
+                        <th>Objectif</th>
+                        <th>
+                            <i class="fas fa-user-tie"></i>
+                            Créé par
+                        </th>
+                        <th>
+                            <i class="fas fa-user-md"></i>
+                            Testé par
+                        </th>
+                        <th class="text-center">
+                            <i class="fas fa-calendar"></i>
+                            Testé le
+                        </th>
+                        <th>
+                            <i class="fas fa-comment-alt"></i>
+                            Commentaire
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="8">
+                            <i class="far fa-plus-square"></i>
+                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#ajouterCasTest" data-remote="{{ path('ajouter-cahier', {'id': projet.id}) }}" href="{{ path('ajouter-cahier', {'id': projet.id}) }}">
+                                Ajouter un cas de test
+                                <i class="fas fa-file-medical-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% for cahier in cahiers %}
+                    <tr>
+                        <td>
+                            <a data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#modifierCasTest" data-remote="{{ path('editer-cahier', {'id': cahier.id}) }}" href="{{ path('editer-cahier', {'id': cahier.id}) }}">
+                                {{ cahier.numero }}
+                            </a>
+                        </td>
+                        <td>{{ cahier.date|date('d/m/Y') }}</td>
+                        <td>{{ cahier.titre }}</td>
+                        <td>{{ cahier.objectif }}</td>
+                        <td>{{ cahier.createur.nom }}</td>
+                        <td>{% if cahier.testeur %}{{ cahier.testeur.nom }}{% endif %}</td>
+                        <td>{% if cahier.testeur %}{{ cahier.fin|date('d/m/Y') }}{% endif %}</td>
+                        <td>{{ cahier.commentaire }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="8">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Aucune recette initiée dans la base de données
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="ajouterCasTest" tabindex="-1" role="dialog" aria-labelledby="ajouterCasTestLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ajouterCasTestLabel">Ajouter un nouveau cas de test pour le projet <strong>{{ projet.libelle }}</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"><i class="fas fa-sync fa-spin"></i> Chargement en cours ...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" id="ajouterCasTestBtn" class="btn btn-primary">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modifierCasTest" tabindex="-1" role="dialog" aria-labelledby="modifierCasTestLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modifierCasTestLabel">Modifier le cas de test <strong>###</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"><i class="fas fa-sync fa-spin"></i> Chargement en cours ...</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" id="supprimerCasTestBtn" href="{{ path("supprimer-cahier", {'id': '###'}) }}" class="btn btn-danger">Supprimer</button>
+                    <button type="button" id="ajouterCasTestBtn" class="btn btn-primary">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" language="javascript" src="{{ asset("js/projet.js") }}"></script>
+    <script type="text/javascript" language="javascript" src="{{ asset("js/cas-test.js") }}"></script>
+{% endblock %}

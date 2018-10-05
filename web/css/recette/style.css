@@ -1,0 +1,6 @@
+.modal-body form label.col-form-label {
+    font-weight: bold;
+}
+#rapport .form-check {
+    display: block;
+}
