@@ -1,0 +1,28 @@
+1. IDENTIFICATION DU POSTE
+	Intitulé du poste: (exemple Comptable)
+	Structure de rattachement:  (exemple Radoran Siège Antanimena)
+	Affectation du poste: (exemple Direction financière)
+	Positionnement:  (exemple Sous l’autorité du PDG et du Manager)
+	Statut du titulaire: (exemple CDI)
+	
+2. MISSIONS
+	Le comptable consigne et rassemble les données commerciales et financières de la société pour faire des balances de comptes, comptes de résultat et autres bilans.
+	Il/Elle vérifie l’exactitude des écritures comptables et en rend compte auprès des responsables de la société.
+	Sécuriser le volet budgétaire et comptable de l’établissement.
+	...
+
+3. ACTIVITES DU COMPTABLE
+	PRINCIPALES:
+		- Saisie de la comptabilité courante
+		- Relations clients et fournisseurs
+		- Gestion des encaissements (chèques, prélèvements, cesu …)
+		- Facturation clients (création, validation et émission des factures)
+		- Gestion des notes de frais
+		- Calcul des commissions partenaires
+		- Déclarations fiscales
+		- ...
+	SECONDAIRES:
+		- Classement et archivage
+		- Mise à jour des fichiers de tiers (gérer et actualiser une base de données)
+		- Préparer les états de TVA 
+		- ...
