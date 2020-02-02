@@ -1,17 +1,27 @@
-1. IDENTIFICATION DU POSTE
+1. IDENTIFICATION DU POSTE (Ny mombamomba ilay poste)
 	Intitulé du poste: (exemple Comptable)
 	Structure de rattachement:  (exemple Radoran Siège Antanimena)
 	Affectation du poste: (exemple Direction financière)
-	Positionnement:  (exemple Sous l’autorité du PDG et du Manager)
 	Statut du titulaire: (exemple CDI)
 	
-2. MISSIONS
+2. RELATION
+	Positionnement:  (exemple Sous l’autorité du PDG et du Manager)
+	Organigramme:
+	+------------+
+	| PDG        |
+	+------------+     +------------+
+	      |__________  | Manager    |
+	      		   +------------+    +------------+
+			         |__________ | Comptable  |
+			       		     +------------+
+	
+3. MISSIONS (Ireo andraikiny)
 	Le comptable consigne et rassemble les données commerciales et financières de la société pour faire des balances de comptes, comptes de résultat et autres bilans.
 	Il/Elle vérifie l’exactitude des écritures comptables et en rend compte auprès des responsables de la société.
 	Sécuriser le volet budgétaire et comptable de l’établissement.
 	...
 
-3. ACTIVITES DU COMPTABLE
+4. ACTIVITES DU COMPTABLE (Ireo lahan'asa ataony)
 	PRINCIPALES:
 		- Saisie de la comptabilité courante
 		- Relations clients et fournisseurs
@@ -26,3 +36,35 @@
 		- Mise à jour des fichiers de tiers (gérer et actualiser une base de données)
 		- Préparer les états de TVA 
 		- ...
+		
+5. COMPENTENCES
+	Savoirs généraux : 
+		Maîtrise des techniques et des règles de la comptabilité (analytique) publique et générale  
+		Maîtrise de la gestion financière 
+		Maîtrise des règles de conservation des pièces comptables 
+	Savoirs spécifiques : 
+		Les règlementations financières, comptables et fiscales
+		La maîtrise du logiciel de comptabilité SAGE COMPTA et GESCOM
+	Savoirs-faire opérationnels : 
+		Maîtriser les techniques de communication orales et écrites 
+	Savoir être : 
+		Organiser et prioriser son travail en fonction des enjeux, du contexte, du délai 
+		Savoir respecter les délais, être rigoureux et précis 
+		Savoir faire face à des situations d’urgence
+
+6. RESULTATS ATTENDUS
+	+----------------------------+------------------------------+-----------------------------------------------+
+	| Missions                   | Résultat attendu             | Critères d'évaluation                         |
+	+----------------------------+------------------------------+-----------------------------------------------+
+	| Détailler ici une mission  | Inona ilay résultat andrasana| Critère ahafantarana hoe tontosa ilay mission |
+	+----------------------------+------------------------------+-----------------------------------------------+
+	| Détailler ici une mission  | Inona ilay résultat andrasana| Critère ahafantarana hoe tontosa ilay mission |
+	+----------------------------+------------------------------+-----------------------------------------------+
+	| Détailler ici une mission  | Inona ilay résultat andrasana| Critère ahafantarana hoe tontosa ilay mission |
+	+----------------------------+------------------------------+-----------------------------------------------+
+	| ...                        | ...                          | ...                                           |
+	+----------------------------+------------------------------+-----------------------------------------------+
+	
+7. EVOLUTIONS POSSIBLE DU POSTE
+	Lazaina eto izay mety ho possibilité d'évolutions rehetra
+	
